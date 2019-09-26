@@ -1,0 +1,11 @@
+<launch>
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+	<rosparam file="$(find astro_control)/config/astro_control.yaml" command="load"/>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+        args="
+            /astro/controller/state
+            /astro/controller/position/hip_abduction_1
+            /astro/controller/position/hip_flexion_2
+            /astro/controller/position/knee_3
+        "/>
+</launch>
