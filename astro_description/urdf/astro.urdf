@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="astro">
+<link name="body_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="body_1_0_body">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/body.stl"/>
+</geometry>
+<material name="body_1_0_body_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/body.stl"/>
+</geometry>
+<material name="body_1_0_body_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="3.23514e-17 -1.57563e-17 7.22909e-19" rpy="0 0 0"/>
+<mass value="5.53043"/>
+<inertia ixx="0.0182567" ixy="0"  ixz="0" iyy="0.039027" iyz="0" izz="0.0489361" />
+</inertial>
+</link>
+<joint name="body_1_body_1_0_body_fixing" type="fixed">
+<origin xyz="0.0659972 -0.00223125 -0.0325887" rpy="0.0869049 -2.22293e-16 -0.110998" />
+<parent link="body_1" />
+<child link="body_1_0_body" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="hip_motor_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="hip_motor_1_0_hip_motor">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_1_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_1_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.13446e-11 -2.52228e-11 5.19814e-10" rpy="0 0 0"/>
+<mass value="0.290543"/>
+<inertia ixx="0.000328594" ixy="-2.04303e-13"  ixz="2.49012e-14" iyy="0.000195003" iyz="-1.8485e-14" izz="0.000193353" />
+</inertial>
+</link>
+<joint name="hip_motor_1_hip_motor_1_0_hip_motor_fixing" type="fixed">
+<origin xyz="0 0.0480708 0" rpy="1.04339e-18 8.23223e-18 1.45984e-18" />
+<parent link="hip_motor_1" />
+<child link="hip_motor_1_0_hip_motor" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="upper_leg_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="upper_leg_1_0_upper_leg">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_1_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_1_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="-0.0158653 -0.0518927 2.91082e-08" rpy="0 0 0"/>
+<mass value="0.599558"/>
+<inertia ixx="0.00301503" ixy="-0.000481164"  ixz="-1.17508e-10" iyy="0.00041169" iyz="-1.99021e-10" izz="0.00299142" />
+</inertial>
+</link>
+<joint name="upper_leg_1_upper_leg_1_0_upper_leg_fixing" type="fixed">
+<origin xyz="-0.0175 6.93889e-18 -1.38778e-17" rpy="-1.17711e-18 9.47393e-18 7.38261e-18" />
+<parent link="upper_leg_1" />
+<child link="upper_leg_1_0_upper_leg" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="shin_1_0_shin">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_1_0_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_1_0_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.75032e-18 -2.35773e-05 -0.0854768" rpy="0 0 0"/>
+<mass value="0.0649774"/>
+<inertia ixx="0.000128996" ixy="0"  ixz="0" iyy="0.000127636" iyz="4.44939e-08" izz="5.60423e-06" />
+</inertial>
+</link>
+<joint name="shin_1_shin_1_0_shin_fixing" type="fixed">
+<origin xyz="-0.01 1.38778e-17 0" rpy="3.46903e-19 1.08811e-18 -4.69955e-18" />
+<parent link="shin_1" />
+<child link="shin_1_0_shin" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_1_1_toe">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_1_1_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_1_1_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="2.95606e-11 -9.95771e-12 0.00105178" rpy="0 0 0"/>
+<mass value="0.00402782"/>
+<inertia ixx="1.62265e-07" ixy="-3.71722e-16"  ixz="1.01732e-15" iyy="1.58984e-07" iyz="-3.30423e-16" izz="1.84918e-07" />
+</inertial>
+</link>
+<joint name="shin_1_shin_1_1_toe_fixing" type="fixed">
+<origin xyz="-0.01 -5.55112e-17 -0.19" rpy="-3.14159 -3.17881e-17 1.5708" />
+<parent link="shin_1" />
+<child link="shin_1_1_toe" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<joint name="knee_3" type="revolute">
+<origin xyz="-0.059 -0.1875 -2.22045e-16" rpy="1.5708 -1.36245e-17 -3.14159" />
+<parent link="upper_leg_1" />
+<child link="shin_1" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_flexion_2" type="revolute">
+<origin xyz="0.0175 0.0480708 2.08167e-17" rpy="1.5708 -1.25268e-17 3.14159" />
+<parent link="hip_motor_1" />
+<child link="upper_leg_1" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_abduction_1" type="revolute">
+<origin xyz="-0.172812 -0.0407702 -0.0382304" rpy="-1.54573e-16 0.0869049 -1.68179" />
+<parent link="body_1" />
+<child link="hip_motor_1" />
+<axis xyz="0 -1 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="hip_motor_2">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="hip_motor_2_0_hip_motor">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_2_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_2_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.13446e-11 -2.52228e-11 5.19814e-10" rpy="0 0 0"/>
+<mass value="0.290543"/>
+<inertia ixx="0.000328594" ixy="-2.04303e-13"  ixz="2.49012e-14" iyy="0.000195003" iyz="-1.8485e-14" izz="0.000193353" />
+</inertial>
+</link>
+<joint name="hip_motor_2_hip_motor_2_0_hip_motor_fixing" type="fixed">
+<origin xyz="0 -0.0480708 0" rpy="-8.65295e-20 -5.65305e-18 5.77025e-18" />
+<parent link="hip_motor_2" />
+<child link="hip_motor_2_0_hip_motor" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="upper_leg_2">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="upper_leg_2_0_upper_leg">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_2_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_2_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="-0.0158653 -0.0518927 2.91082e-08" rpy="0 0 0"/>
+<mass value="0.599558"/>
+<inertia ixx="0.00301503" ixy="-0.000481164"  ixz="-1.17508e-10" iyy="0.00041169" iyz="-1.99021e-10" izz="0.00299142" />
+</inertial>
+</link>
+<joint name="upper_leg_2_upper_leg_2_0_upper_leg_fixing" type="fixed">
+<origin xyz="-0.0175 6.93889e-18 0" rpy="-2.76055e-19 -1.21531e-18 6.83835e-18" />
+<parent link="upper_leg_2" />
+<child link="upper_leg_2_0_upper_leg" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_2">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="shin_2_0_toe">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_2_0_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_2_0_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="2.95606e-11 -9.95771e-12 0.00105178" rpy="0 0 0"/>
+<mass value="0.00402782"/>
+<inertia ixx="1.62265e-07" ixy="-3.71722e-16"  ixz="1.01732e-15" iyy="1.58984e-07" iyz="-3.30423e-16" izz="1.84918e-07" />
+</inertial>
+</link>
+<joint name="shin_2_shin_2_0_toe_fixing" type="fixed">
+<origin xyz="0.01 -2.77556e-16 -0.19" rpy="-3.14159 5.28839e-17 1.5708" />
+<parent link="shin_2" />
+<child link="shin_2_0_toe" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_2_1_shin">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_2_1_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_2_1_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.75032e-18 -2.35773e-05 -0.0854768" rpy="0 0 0"/>
+<mass value="0.0649774"/>
+<inertia ixx="0.000128996" ixy="0"  ixz="0" iyy="0.000127636" iyz="4.44939e-08" izz="5.60423e-06" />
+</inertial>
+</link>
+<joint name="shin_2_shin_2_1_shin_fixing" type="fixed">
+<origin xyz="0.01 -5.55112e-17 -2.77556e-17" rpy="6.6556e-19 -9.04247e-18 -5.58114e-18" />
+<parent link="shin_2" />
+<child link="shin_2_1_shin" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<joint name="knee_9" type="revolute">
+<origin xyz="-0.059 -0.1875 -2.22045e-16" rpy="-1.5708 2.70978e-17 3.54843e-17" />
+<parent link="upper_leg_2" />
+<child link="shin_2" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_flexion_8" type="revolute">
+<origin xyz="-0.0175 -0.0480708 6.93889e-18" rpy="1.5708 -3.48751e-17 2.21214e-14" />
+<parent link="hip_motor_2" />
+<child link="upper_leg_2" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_abduction_7" type="revolute">
+<origin xyz="0.304807 0.0363077 -0.0269469" rpy="4.43804e-16 0.0869049 -1.68179" />
+<parent link="body_1" />
+<child link="hip_motor_2" />
+<axis xyz="0 -1 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="hip_motor_3">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="hip_motor_3_0_hip_motor">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_3_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_3_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.13446e-11 -2.52228e-11 5.19814e-10" rpy="0 0 0"/>
+<mass value="0.290543"/>
+<inertia ixx="0.000328594" ixy="-2.04303e-13"  ixz="2.49012e-14" iyy="0.000195003" iyz="-1.8485e-14" izz="0.000193353" />
+</inertial>
+</link>
+<joint name="hip_motor_3_hip_motor_3_0_hip_motor_fixing" type="fixed">
+<origin xyz="0 -0.0480708 -6.93889e-18" rpy="-5.00683e-19 -5.97818e-18 1.20234e-17" />
+<parent link="hip_motor_3" />
+<child link="hip_motor_3_0_hip_motor" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="upper_leg_3">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="upper_leg_3_0_upper_leg">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_3_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_3_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="-0.0158653 -0.0518927 2.91082e-08" rpy="0 0 0"/>
+<mass value="0.599558"/>
+<inertia ixx="0.00301503" ixy="-0.000481164"  ixz="-1.17508e-10" iyy="0.00041169" iyz="-1.99021e-10" izz="0.00299142" />
+</inertial>
+</link>
+<joint name="upper_leg_3_upper_leg_3_0_upper_leg_fixing" type="fixed">
+<origin xyz="0.010165 0 0" rpy="-6.67825e-20 -1.15115e-17 9.5296e-18" />
+<parent link="upper_leg_3" />
+<child link="upper_leg_3_0_upper_leg" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_3">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="shin_3_0_shin">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_3_0_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_3_0_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.75032e-18 -2.35773e-05 -0.0854768" rpy="0 0 0"/>
+<mass value="0.0649774"/>
+<inertia ixx="0.000128996" ixy="0"  ixz="0" iyy="0.000127636" iyz="4.44939e-08" izz="5.60423e-06" />
+</inertial>
+</link>
+<joint name="shin_3_shin_3_0_shin_fixing" type="fixed">
+<origin xyz="-0.007525 0 0" rpy="4.64757e-19 8.95694e-18 -1.28169e-17" />
+<parent link="shin_3" />
+<child link="shin_3_0_shin" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_3_1_toe">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_3_1_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_3_1_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="2.95606e-11 -9.95771e-12 0.00105178" rpy="0 0 0"/>
+<mass value="0.00402782"/>
+<inertia ixx="1.62265e-07" ixy="-3.71722e-16"  ixz="1.01732e-15" iyy="1.58984e-07" iyz="-3.30423e-16" izz="1.84918e-07" />
+</inertial>
+</link>
+<joint name="shin_3_shin_3_1_toe_fixing" type="fixed">
+<origin xyz="-0.007525 1.11022e-16 -0.19" rpy="3.14159 1.26855e-15 1.5708" />
+<parent link="shin_3" />
+<child link="shin_3_1_toe" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<joint name="knee_12" type="revolute">
+<origin xyz="-0.02886 -0.1875 -1.66533e-16" rpy="1.5708 -5.52594e-18 3.14159" />
+<parent link="upper_leg_3" />
+<child link="shin_3" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_flexion_11" type="revolute">
+<origin xyz="0.045165 -0.0480708 -5.55112e-17" rpy="1.5708 -1.83741e-17 3.14159" />
+<parent link="hip_motor_3" />
+<child link="upper_leg_3" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_abduction_10" type="revolute">
+<origin xyz="0.290461 -0.0924047 -0.0382304" rpy="2.23135e-16 0.0869049 -1.68179" />
+<parent link="body_1" />
+<child link="hip_motor_3" />
+<axis xyz="0 -1 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<link name="hip_motor_4">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="hip_motor_4_0_hip_motor">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_4_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/hip_motor.stl"/>
+</geometry>
+<material name="hip_motor_4_0_hip_motor_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.13446e-11 -2.52228e-11 5.19814e-10" rpy="0 0 0"/>
+<mass value="0.290543"/>
+<inertia ixx="0.000328594" ixy="-2.04303e-13"  ixz="2.49012e-14" iyy="0.000195003" iyz="-1.8485e-14" izz="0.000193353" />
+</inertial>
+</link>
+<joint name="hip_motor_4_hip_motor_4_0_hip_motor_fixing" type="fixed">
+<origin xyz="-1.38778e-17 0.0480708 0" rpy="-1.27595e-19 -4.38734e-18 -1.85754e-17" />
+<parent link="hip_motor_4" />
+<child link="hip_motor_4_0_hip_motor" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="upper_leg_4">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="upper_leg_4_0_upper_leg">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_4_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/upper_leg.stl"/>
+</geometry>
+<material name="upper_leg_4_0_upper_leg_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="-0.0158653 -0.0518927 2.91082e-08" rpy="0 0 0"/>
+<mass value="0.599558"/>
+<inertia ixx="0.00301503" ixy="-0.000481164"  ixz="-1.17508e-10" iyy="0.00041169" iyz="-1.99021e-10" izz="0.00299142" />
+</inertial>
+</link>
+<joint name="upper_leg_4_upper_leg_4_0_upper_leg_fixing" type="fixed">
+<origin xyz="0.03783 6.93889e-18 -1.38778e-17" rpy="-5.22828e-19 5.483e-18 -1.89147e-17" />
+<parent link="upper_leg_4" />
+<child link="upper_leg_4_0_upper_leg" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_4">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<link name="shin_4_0_toe">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_4_0_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/toe.stl"/>
+</geometry>
+<material name="shin_4_0_toe_material">
+<color rgba="1 0 0 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="2.95606e-11 -9.95771e-12 0.00105178" rpy="0 0 0"/>
+<mass value="0.00402782"/>
+<inertia ixx="1.62265e-07" ixy="-3.71722e-16"  ixz="1.01732e-15" iyy="1.58984e-07" iyz="-3.30423e-16" izz="1.84918e-07" />
+</inertial>
+</link>
+<joint name="shin_4_shin_4_0_toe_fixing" type="fixed">
+<origin xyz="0.007525 1.94289e-16 -0.19" rpy="3.14159 -9.92892e-17 1.5708" />
+<parent link="shin_4" />
+<child link="shin_4_0_toe" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<link name="shin_4_1_shin">
+<visual>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_4_1_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</visual>
+<collision>
+<geometry>
+<mesh filename="package://astro_description/meshes/shin.stl"/>
+</geometry>
+<material name="shin_4_1_shin_material">
+<color rgba="0.615686 0.811765 0.929412 1.0"/>
+</material>
+</collision>
+<inertial>
+<origin xyz="1.75032e-18 -2.35773e-05 -0.0854768" rpy="0 0 0"/>
+<mass value="0.0649774"/>
+<inertia ixx="0.000128996" ixy="0"  ixz="0" iyy="0.000127636" iyz="4.44939e-08" izz="5.60423e-06" />
+</inertial>
+</link>
+<joint name="shin_4_shin_4_1_shin_fixing" type="fixed">
+<origin xyz="0.007525 0 0" rpy="-4.76449e-19 2.20057e-18 -3.22122e-18" />
+<parent link="shin_4" />
+<child link="shin_4_1_shin" />
+<axis xyz="0 0 0"/>
+</joint>
+
+<joint name="knee_6" type="revolute">
+<origin xyz="-0.001195 -0.1875 -2.22045e-16" rpy="-1.5708 -3.10391e-16 -8.40794e-16" />
+<parent link="upper_leg_4" />
+<child link="shin_4" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_flexion_5" type="revolute">
+<origin xyz="0.07283 0.0480708 -1.04083e-16" rpy="-1.5708 -5.20821e-16 -3.14159" />
+<parent link="hip_motor_4" />
+<child link="upper_leg_4" />
+<axis xyz="-1 0 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+<joint name="hip_abduction_4" type="revolute">
+<origin xyz="-0.158466 0.0879422 -0.0269469" rpy="3.14159 -0.0869049 1.4598" />
+<parent link="body_1" />
+<child link="hip_motor_4" />
+<axis xyz="0 -1 0"/>
+<limit effort="1.5" lower="-3.14" upper="3.14" velocity="22" />
+<joint_properties friction="0.0"/>
+</joint>
+
+</robot>

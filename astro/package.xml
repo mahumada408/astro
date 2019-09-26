@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>astro</name>
+  <version>1.1.0</version>
+  <description>
+    ROS packages for the astro (meta package)
+  </description>
+  <author>TODO</author>
+  <maintainer email="TODO@email.com" />
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>astro_description</exec_depend>
+  <export><metapackage/></export>
+</package>
