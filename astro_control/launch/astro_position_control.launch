@@ -1,11 +1,23 @@
+<?xml version="1.0"?>
+
 <launch>
-    <!-- Load joint controller configurations from YAML file to parameter server -->
-	<rosparam file="$(find astro_control)/config/astro_control.yaml" command="load"/>
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
-        args="
-            /astro/controller/state
-            /astro/controller/position/hip_abduction_1
-            /astro/controller/position/hip_flexion_2
-            /astro/controller/position/knee_3
-        "/>
+
+    <param name="robot_description" textfile="$(find astro_description)/urdf/astro.urdf" />
+
+    <group ns="astro">
+
+    <!-- Load controller settings -->
+    <rosparam file="$(find astro_control)/config/astro_controllers.yaml" command="load"/>
+
+    <!-- Load controller manager -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	  output="screen" ns="/astro" args="joint1_position_controller joint2_position_controller joint3_position_controller joint_state_controller" />
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/astro/joint_states" />
+  </node>
+
+  </group>
 </launch>
