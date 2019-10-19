@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 580
   - Class: rviz/Selection
@@ -268,7 +269,7 @@ Visualization Manager:
           Value: true
         upper_leg_4_0_upper_leg:
           Value: true
-      Marker Scale: 1
+      Marker Scale: 0.25
       Name: TF
       Show Arrows: true
       Show Axes: true
