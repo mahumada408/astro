@@ -61,11 +61,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        body_1:
+        base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        body_1_0_body:
+        body:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -209,9 +209,9 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        body_1:
+        base_link:
           Value: true
-        body_1_0_body:
+        body:
           Value: true
         hip_motor_1:
           Value: true
@@ -275,60 +275,59 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        body_1:
-          body_1_0_body:
-            {}
-          hip_motor_1:
-            hip_motor_1_0_hip_motor:
-              {}
-            upper_leg_1:
-              shin_1:
-                shin_1_0_shin:
-                  {}
-                shin_1_1_toe:
-                  {}
-              upper_leg_1_0_upper_leg:
+        base_link:
+          body:
+            hip_motor_1:
+              hip_motor_1_0_hip_motor:
                 {}
-          hip_motor_2:
-            hip_motor_2_0_hip_motor:
-              {}
-            upper_leg_2:
-              shin_2:
-                shin_2_0_toe:
+              upper_leg_1:
+                shin_1:
+                  shin_1_0_shin:
+                    {}
+                  shin_1_1_toe:
+                    {}
+                upper_leg_1_0_upper_leg:
                   {}
-                shin_2_1_shin:
-                  {}
-              upper_leg_2_0_upper_leg:
+            hip_motor_2:
+              hip_motor_2_0_hip_motor:
                 {}
-          hip_motor_3:
-            hip_motor_3_0_hip_motor:
-              {}
-            upper_leg_3:
-              shin_3:
-                shin_3_0_shin:
+              upper_leg_2:
+                shin_2:
+                  shin_2_0_toe:
+                    {}
+                  shin_2_1_shin:
+                    {}
+                upper_leg_2_0_upper_leg:
                   {}
-                shin_3_1_toe:
-                  {}
-              upper_leg_3_0_upper_leg:
+            hip_motor_3:
+              hip_motor_3_0_hip_motor:
                 {}
-          hip_motor_4:
-            hip_motor_4_0_hip_motor:
-              {}
-            upper_leg_4:
-              shin_4:
-                shin_4_0_toe:
+              upper_leg_3:
+                shin_3:
+                  shin_3_0_shin:
+                    {}
+                  shin_3_1_toe:
+                    {}
+                upper_leg_3_0_upper_leg:
                   {}
-                shin_4_1_shin:
-                  {}
-              upper_leg_4_0_upper_leg:
+            hip_motor_4:
+              hip_motor_4_0_hip_motor:
                 {}
+              upper_leg_4:
+                shin_4:
+                  shin_4_0_toe:
+                    {}
+                  shin_4_1_shin:
+                    {}
+                upper_leg_4_0_upper_leg:
+                  {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: body_1
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -364,10 +363,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.395398498
+      Pitch: 0.625398159
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.885397971
+      Yaw: 1.18540001
     Saved: ~
 Window Geometry:
   Displays:
