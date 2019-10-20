@@ -216,17 +216,6 @@
     <joint_properties friction="0.0"/>
   </joint>
 
-  <transmission name="trans_hip_abduction_1">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="hip_abduction_1">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="motor_hip_abduction_1">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission>
-
   <link name="hip_motor_2">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -752,8 +741,143 @@
     <joint_properties friction="0.0"/>
   </joint>
 
+  <transmission name="trans_hip_abduction_1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_abduction_1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_hip_abduction_1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_flexion_2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_flexion_2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_flexion_2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_knee_3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="knee_3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_knee_3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_abduction_4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_abduction_4">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_hip_abduction_4">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_flexion_5">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_flexion_5">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_flexion_5">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_knee_6">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="knee_6">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_knee_6">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_abduction_7">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_abduction_7">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_hip_abduction_7">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_flexion_8">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_flexion_8">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_flexion_8">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_knee_9">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="knee_9">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_knee_9">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_abduction_10">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_abduction_10">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_hip_abduction_10">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_hip_flexion_11">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="hip_flexion_11">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_flexion_11">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="trans_knee_12">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="knee_12">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_knee_12">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/astro</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
 </robot>
