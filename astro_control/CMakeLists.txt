@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(astro_control)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -17,5 +17,5 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package()
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(talker src/talker.cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
+add_executable(controller_publisher src/controller_publisher.cpp)
+target_link_libraries(controller_publisher ${catkin_LIBRARIES})
