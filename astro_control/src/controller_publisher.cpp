@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "talker");
+  ros::init(argc, argv, "control_publisher");
   ros::NodeHandle n;
   ros::Publisher chatter_pub = n.advertise<std_msgs::Float64MultiArray>("/astro/joint_position_controller/command", 1000);
   ros::Rate loop_rate(100);
@@ -19,17 +19,7 @@ int main(int argc, char **argv)
     std_msgs::Float64MultiArray msg;
 
     for (int i = 0; i <= 11; i++) {
-      if (i == 0 || i == 3 || i == 6 || i == 9) {
-        joint_angle = 0;
-      } else {
-        if (i == 4 || i == 7) {
-          // knees.
-          // Negative for opposite side of astro.
-          joint_angle = -std::sin(count/100);
-        } else {
-          joint_angle = std::sin(count/100);
-        }
-      }
+      joint_angle = std::sin(count/100);
       msg.data.push_back(joint_angle);
     }
 
