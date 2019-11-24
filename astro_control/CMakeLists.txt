@@ -14,8 +14,14 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp rospy std_msgs genmsg
 )
 
-catkin_package()
+catkin_package(
+  INCLUDE_DIRS include
+)
 include_directories(include ${catkin_INCLUDE_DIRS})
 
+add_subdirectory(src/qpOASES)
+
 add_executable(controller_publisher src/controller_publisher.cpp)
-target_link_libraries(controller_publisher ${catkin_LIBRARIES})
+target_link_libraries(controller_publisher ${catkin_LIBRARIES} qpOASES)
+
+

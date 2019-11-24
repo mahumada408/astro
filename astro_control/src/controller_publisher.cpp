@@ -2,6 +2,8 @@
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
 
+#include "qpOASES/include/qpOASES.hpp"
+
 #include <cmath>
 
 
