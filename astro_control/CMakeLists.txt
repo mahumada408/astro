@@ -19,9 +19,17 @@ catkin_package(
 )
 include_directories(include ${catkin_INCLUDE_DIRS})
 
+add_subdirectory(src/floating_base)
 add_subdirectory(src/qpOASES)
 
+install(DIRECTORY include/${PROJECT_NAME}/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+
 add_executable(controller_publisher src/controller_publisher.cpp)
-target_link_libraries(controller_publisher ${catkin_LIBRARIES} qpOASES)
+target_link_libraries(controller_publisher 
+                      ${catkin_LIBRARIES}
+                      qpOASES
+                      floating_base)
 
 
