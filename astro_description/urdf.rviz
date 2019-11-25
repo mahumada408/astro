@@ -8,10 +8,7 @@ Panels:
         - /Status1
         - /RobotModel1
         - /TF1
-        - /TF1/Frames1
         - /TF1/Tree1
-        - /TF1/Tree1/base_link1
-        - /TF1/Tree1/base_link1/hip_motor_11
       Splitter Ratio: 0.5
     Tree Height: 780
   - Class: rviz/Selection
@@ -70,135 +67,83 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        body:
+          Value: true
+        hip_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hip_motor_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hip_motor_1_0_hip_motor:
+        hip_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hip_motor_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hip_motor_2_0_hip_motor:
+        hip_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hip_motor_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hip_motor_3_0_hip_motor:
+        hip_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        hip_motor_4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        hip_motor_4_0_hip_motor:
+        knee_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        shin_1_0_shin:
+        knee_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_1_1_toe:
+        knee_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        shin_2_0_toe:
+        knee_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_2_1_shin:
+        shoulder_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        shin_3_0_shin:
+        shoulder_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_3_1_toe:
+        shoulder_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        shin_4_0_toe:
+        shoulder_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        shin_4_1_shin:
+        toe_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        upper_leg_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        upper_leg_1_0_upper_leg:
+        toe_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        upper_leg_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        upper_leg_2_0_upper_leg:
+        toe_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        upper_leg_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        upper_leg_3_0_upper_leg:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        upper_leg_4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        upper_leg_4_0_upper_leg:
+        toe_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -213,120 +158,68 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: false
+        All Enabled: true
         base_link:
           Value: true
-        body:
+        hip_0:
           Value: true
-        hip_motor_1:
-          Value: false
-        hip_motor_1_0_hip_motor:
+        hip_1:
           Value: true
-        hip_motor_2:
-          Value: false
-        hip_motor_2_0_hip_motor:
-          Value: false
-        hip_motor_3:
-          Value: false
-        hip_motor_3_0_hip_motor:
-          Value: false
-        hip_motor_4:
-          Value: false
-        hip_motor_4_0_hip_motor:
+        hip_2:
           Value: true
-        shin_1:
-          Value: false
-        shin_1_0_shin:
+        hip_3:
           Value: true
-        shin_1_1_toe:
-          Value: false
-        shin_2:
-          Value: false
-        shin_2_0_toe:
-          Value: false
-        shin_2_1_shin:
-          Value: false
-        shin_3:
-          Value: false
-        shin_3_0_shin:
-          Value: false
-        shin_3_1_toe:
-          Value: false
-        shin_4:
-          Value: false
-        shin_4_0_toe:
-          Value: false
-        shin_4_1_shin:
+        knee_0:
           Value: true
-        upper_leg_1:
-          Value: false
-        upper_leg_1_0_upper_leg:
-          Value: false
-        upper_leg_2:
-          Value: false
-        upper_leg_2_0_upper_leg:
-          Value: false
-        upper_leg_3:
-          Value: false
-        upper_leg_3_0_upper_leg:
-          Value: false
-        upper_leg_4:
-          Value: false
-        upper_leg_4_0_upper_leg:
-          Value: false
-      Marker Scale: 0.100000001
+        knee_1:
+          Value: true
+        knee_2:
+          Value: true
+        knee_3:
+          Value: true
+        shoulder_0:
+          Value: true
+        shoulder_1:
+          Value: true
+        shoulder_2:
+          Value: true
+        shoulder_3:
+          Value: true
+        toe_0:
+          Value: true
+        toe_1:
+          Value: true
+        toe_2:
+          Value: true
+        toe_3:
+          Value: true
+      Marker Scale: 0.25
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
         base_link:
-          body:
-            {}
-          hip_motor_1:
-            hip_motor_1_0_hip_motor:
-              {}
-            upper_leg_1:
-              shin_1:
-                shin_1_0_shin:
+          hip_0:
+            shoulder_0:
+              knee_0:
+                toe_0:
                   {}
-                shin_1_1_toe:
+          hip_1:
+            shoulder_1:
+              knee_1:
+                toe_1:
                   {}
-              upper_leg_1_0_upper_leg:
-                {}
-          hip_motor_2:
-            hip_motor_2_0_hip_motor:
-              {}
-            upper_leg_2:
-              shin_2:
-                shin_2_0_toe:
+          hip_2:
+            shoulder_2:
+              knee_2:
+                toe_2:
                   {}
-                shin_2_1_shin:
+          hip_3:
+            shoulder_3:
+              knee_3:
+                toe_3:
                   {}
-              upper_leg_2_0_upper_leg:
-                {}
-          hip_motor_3:
-            hip_motor_3_0_hip_motor:
-              {}
-            upper_leg_3:
-              shin_3:
-                shin_3_0_shin:
-                  {}
-                shin_3_1_toe:
-                  {}
-              upper_leg_3_0_upper_leg:
-                {}
-          hip_motor_4:
-            hip_motor_4_0_hip_motor:
-              {}
-            upper_leg_4:
-              shin_4:
-                shin_4_0_toe:
-                  {}
-                shin_4_1_shin:
-                  {}
-              upper_leg_4_0_upper_leg:
-                {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -354,25 +247,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.713049173
+      Distance: 1.01715398
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.0767367929
-        Y: 0.0247757547
-        Z: -0.27023232
+        X: 0.0536776744
+        Y: 0.144782096
+        Z: -0.19612895
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.555398464
+      Pitch: 0.325398117
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.76860356
+      Yaw: 1.40540719
     Saved: ~
 Window Geometry:
   Displays:

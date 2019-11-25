@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 
     geometry_msgs::TransformStamped transformStamped;
     try{
-      transformStamped = tfBuffer.lookupTransform("shin_1_1_toe", "base_link",
+      transformStamped = tfBuffer.lookupTransform("toe_2", "base_link",
                                ros::Time(0));
     }
     catch (tf2::TransformException &ex) {
