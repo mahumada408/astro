@@ -8,13 +8,14 @@
 #include "floating_base/floating_base.h"
 
 #include <cmath>
+#include <iostream>
 
 
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "control_publisher");
   ros::NodeHandle n;
-  ros::Publisher chatter_pub = n.advertise<std_msgs::Float64MultiArray>("/astro/joint_position_controller/command", 1000);
+  ros::Publisher chatter_pub = n.advertise<std_msgs::Float64MultiArray>("/joint_position_controller/command", 1000);
   ros::Rate loop_rate(100);
 
   FloatingBase model;
@@ -44,7 +45,10 @@ int main(int argc, char **argv)
       continue;
     }
 
-    std::cout << transformStamped.transform.translation.x << std::endl;;
+    ROS_INFO("x: %f", transformStamped.transform.translation.x);
+    ROS_INFO("y: %f", transformStamped.transform.translation.y);
+    ROS_INFO("z: %f", transformStamped.transform.translation.z);
+    // std::cout << transformStamped.transform.translation.x << std::endl;;
 
     // msg.data = std::sin(count/100);
     // ROS_INFO("%f", msg.data);
