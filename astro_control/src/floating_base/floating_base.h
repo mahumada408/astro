@@ -12,6 +12,8 @@ class FloatingBase {
 
         void UpdateState();
 
+        void SetFootPosition(Eigen::Vector3d foot_fl, Eigen::Vector3d foot_fr, Eigen::Vector3d foot_rl, Eigen::Vector3d foot_rr);
+
         // Update the continuous linear dynamics.
         // x_dot = Ax + Bu
         // @param inertia Quadruped's inertia in the global coordinate frame. 
@@ -37,6 +39,12 @@ class FloatingBase {
 
         // Rotation matrix about the z axis (yaw).
         Eigen::Matrix3d r_yaw_;
+
+        // Position of foot from the body cm expressed in the body frame.
+        Eigen::Vector3d foot_fl_;
+        Eigen::Vector3d foot_fr_;
+        Eigen::Vector3d foot_rl_;
+        Eigen::Vector3d foot_rr_;
 
         Eigen::Vector3d state_;
         Eigen::Matrix<double, 13, 13> A_continuous_;

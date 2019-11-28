@@ -23,6 +23,13 @@ void FloatingBase::Initialize() {
     B_continuous_.setZero();
 }
 
+void FloatingBase::SetFootPosition(Eigen::Vector3d foot_fl, Eigen::Vector3d foot_fr, Eigen::Vector3d foot_rl, Eigen::Vector3d foot_rr) {
+    foot_fl_ = foot_fl;
+    foot_fr_ = foot_fr;
+    foot_rl_ = foot_rl;
+    foot_rr_ = foot_rr;
+}
+
 Eigen::Matrix3d FloatingBase::InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3d foot_pos) {
     // Create a skew symmetric matrix from the foot position.
     // The skew matrix will have the following format:
