@@ -1,6 +1,9 @@
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "std_msgs/String.h"
+
+#include <nav_msgs/Odometry.h>
 #include <tf/transform_listener.h>
 #include <tf2_ros/transform_listener.h>
 #include <tf_conversions/tf_eigen.h>
@@ -12,7 +15,6 @@
 #include <cmath>
 #include <eigen3/Eigen/Dense>
 #include <iostream>
-
 
 int main(int argc, char **argv)
 {
@@ -26,9 +28,6 @@ int main(int argc, char **argv)
   Eigen::Vector3d foot_fr;
   Eigen::Vector3d foot_rl;
   Eigen::Vector3d foot_rr;
-
-  // tf2_ros::Buffer tfBuffer;
-  // tf2_ros::TransformListener tfListener(tfBuffer);
 
   tf::TransformListener listener;
 
@@ -45,6 +44,17 @@ int main(int argc, char **argv)
 
     tf::StampedTransform transformStamped;
     try{
+      // Get body frame's state expressed in the world frame.
+      listener.lookupTransform("/base_link", "/world",
+                               ros::Time(0), transformStamped);
+      transformStamped.getRotation();
+      tf::Matrix3x3 robot_pose(transformStamped.getRotation());
+      double roll, pitch, yaw;
+      robot_pose.getRPY(roll, pitch, yaw);
+      ROS_INFO("roll: %f", roll);
+      ROS_INFO("pitch: %f", pitch);
+      ROS_INFO("yaw: %f", yaw);
+
       // Get the position vector from the body's cm to toe_0 expressed in the body frame.
       listener.lookupTransform("/toe_0", "/base_link",
                                ros::Time(0), transformStamped);
@@ -73,8 +83,6 @@ int main(int argc, char **argv)
     ROS_INFO("y: %f", foot_fl.y());
     ROS_INFO("z: %f", foot_fl.z());
 
-    // msg.data = std::sin(count/100);
-    // ROS_INFO("%f", msg.data);
     chatter_pub.publish(msg);
     ros::spinOnce();
     loop_rate.sleep();

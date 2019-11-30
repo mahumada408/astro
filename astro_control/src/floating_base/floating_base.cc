@@ -2,6 +2,12 @@
 
 #include <math.h>
 
+void RobotState::SetOrientation(tf::Quaternion robo_quat) {
+    tf::Matrix3x3 robot_pose(robo_quat);
+    double roll, pitch, yaw;
+    robot_pose.getRPY(roll, pitch, yaw);
+}
+
 FloatingBase::FloatingBase() {
     Initialize();
 }

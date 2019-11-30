@@ -1,7 +1,15 @@
 #pragma once
 
 #include <eigen3/Eigen/Dense>
+#include "tf/Transform.h"
 
+class RobotState {
+    public:
+        void SetOrientation(tf::Quaternion robo_quat);
+        Eigen::Matrix<double, 12, 1> GetRoboState() { return robo_state_; }
+    private:
+        Eigen::Matrix<double, 12, 1> robo_state_;
+};
 
 class FloatingBase {
     public:
