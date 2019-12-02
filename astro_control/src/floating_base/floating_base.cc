@@ -2,11 +2,6 @@
 
 #include <math.h>
 
-void RobotState::SetOrientation(tf::Quaternion robo_quat) {
-    tf::Matrix3x3 robot_pose(robo_quat);
-    double roll, pitch, yaw;
-    robot_pose.getRPY(roll, pitch, yaw);
-}
 
 FloatingBase::FloatingBase() {
     Initialize();
@@ -34,6 +29,36 @@ void FloatingBase::SetFootPosition(Eigen::Vector3d foot_fl, Eigen::Vector3d foot
     foot_fr_ = foot_fr;
     foot_rl_ = foot_rl;
     foot_rr_ = foot_rr;
+}
+
+void FloatingBase::SetRobotPosition(tf::Vector3& robo_pos) {
+    robo_state_[3] = robo_pos.x();
+    robo_state_[4] = robo_pos.y();
+    robo_state_[5] = robo_pos.z();
+}
+
+void FloatingBase::SetOrientation(tf::Quaternion robo_quat) {
+    tf::Matrix3x3 robot_pose(robo_quat);
+    double roll, pitch, yaw;
+    robot_pose.getRPY(roll, pitch, yaw);
+    robo_state_[0] = roll;
+    robo_state_[1] = pitch;
+    robo_state_[2] = yaw;
+}
+
+void FloatingBase::SetRobotVelocities(geometry_msgs::Twist& robo_twist) {
+    robo_state_[6] = robo_twist.linear.x;
+    robo_state_[7] = robo_twist.linear.y;
+    robo_state_[8] = robo_twist.linear.z;
+    robo_state_[9] = robo_twist.angular.x;
+    robo_state_[10] = robo_twist.angular.y;
+    robo_state_[11] = robo_twist.angular.z;
+}
+
+void FloatingBase::SetRobotPose(tf::StampedTransform& robo_pose, geometry_msgs::Twist& robo_twist) {
+    SetRobotPosition(robo_pose.getOrigin());
+    SetOrientation(robo_pose.getRotation());
+    SetRobotVelocities(robo_twist);
 }
 
 Eigen::Matrix3d FloatingBase::InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3d foot_pos) {

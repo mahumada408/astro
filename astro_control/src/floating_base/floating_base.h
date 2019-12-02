@@ -1,15 +1,10 @@
 #pragma once
 
 #include <eigen3/Eigen/Dense>
-#include "tf/Transform.h"
+#include <ros/ros.h>
 
-class RobotState {
-    public:
-        void SetOrientation(tf::Quaternion robo_quat);
-        Eigen::Matrix<double, 12, 1> GetRoboState() { return robo_state_; }
-    private:
-        Eigen::Matrix<double, 12, 1> robo_state_;
-};
+#include "tf/transform_listener.h"
+
 
 class FloatingBase {
     public:
@@ -21,6 +16,16 @@ class FloatingBase {
         void UpdateState();
 
         void SetFootPosition(Eigen::Vector3d foot_fl, Eigen::Vector3d foot_fr, Eigen::Vector3d foot_rl, Eigen::Vector3d foot_rr);
+
+        // Sets the position of the origin of the body frame in the world frame, expressed in the world frame.
+        void SetRobotPosition(tf::Vector3& robo_pos);
+
+        // Sets the orientation of the body frame in the world frame, expressed in the world frame.
+        void SetOrientation(tf::Quaternion robo_quat);
+
+        void SetRobotVelocities(geometry_msgs::Twist& robo_twist);
+
+        void SetRobotPose(tf::StampedTransform& robo_pose, geometry_msgs::Twist& robo_twist);
 
         // Update the continuous linear dynamics.
         // x_dot = Ax + Bu
@@ -57,4 +62,7 @@ class FloatingBase {
         Eigen::Vector3d state_;
         Eigen::Matrix<double, 13, 13> A_continuous_;
         Eigen::Matrix<double, 13, 12> B_continuous_;
+
+        // State of the robot.
+        Eigen::Matrix<double, 12, 1> robo_state_;
 };

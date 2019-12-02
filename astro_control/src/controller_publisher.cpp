@@ -43,17 +43,14 @@ int main(int argc, char **argv)
     }
 
     tf::StampedTransform transformStamped;
+    geometry_msgs::Twist robot_twist;
     try{
       // Get body frame's state expressed in the world frame.
       listener.lookupTransform("/base_link", "/world",
                                ros::Time(0), transformStamped);
-      transformStamped.getRotation();
-      tf::Matrix3x3 robot_pose(transformStamped.getRotation());
-      double roll, pitch, yaw;
-      robot_pose.getRPY(roll, pitch, yaw);
-      ROS_INFO("roll: %f", roll);
-      ROS_INFO("pitch: %f", pitch);
-      ROS_INFO("yaw: %f", yaw);
+      listener.lookupTwist("/base_link", "/world",
+                               ros::Time(0), ros::Duration(0.001), robot_twist);
+      robot_model.SetRobotPose(transformStamped, robot_twist);
 
       // Get the position vector from the body's cm to toe_0 expressed in the body frame.
       listener.lookupTransform("/toe_0", "/base_link",
