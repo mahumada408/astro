@@ -1,5 +1,6 @@
 #include "floating_base.h"
 
+#include <eigen3/unsupported/Eigen/MatrixFunctions>
 #include <math.h>
 
 
@@ -59,6 +60,11 @@ void FloatingBase::SetRobotPose(tf::StampedTransform& robo_pose, geometry_msgs::
     SetRobotPosition(robo_pose.getOrigin());
     SetOrientation(robo_pose.getRotation());
     SetRobotVelocities(robo_twist);
+
+    // Update rotation matrix with yaw angle.
+    r_yaw_ << cos(robo_state_[2]), -sin(robo_state_[2]), 0,
+            -sin(robo_state_[2]), cos(robo_state_[2]), 0,
+            0, 0, 0;
 }
 
 Eigen::Matrix3d FloatingBase::InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3d foot_pos) {
@@ -73,12 +79,6 @@ Eigen::Matrix3d FloatingBase::InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3
                 foot_pos.z(), 0, -foot_pos.x(),
                 -foot_pos.y(), foot_pos.x(), 0;
     return inertia.inverse() * skew_pos;
-}
-
-void FloatingBase::SetQuadDynamics(double yaw_rad) {
-    r_yaw_ << cos(yaw_rad), -sin(yaw_rad), 0,
-            -sin(yaw_rad), cos(yaw_rad), 0,
-            0, 0, 0;
 }
 
 void FloatingBase::UpdateDynamics() {
@@ -106,4 +106,16 @@ void FloatingBase::UpdateDynamics() {
         // Rows 9 - 11 will have the mass goodness.
         B_continuous_.block(9, i*3, 3, 3) = Eigen::Matrix3d::Identity() / mass_;
     }
+}
+
+void FloatingBase::GetDiscretizeDynamics(Eigen::Matrix<double, 13, 13>& A_discrete, Eigen::Matrix<double, 13, 12>& B_discrete) {
+    // Combine A and B matrix into one super 25x25 matrix.
+    Eigen::Matrix<double, 25, 25> AB_continuous;
+    Eigen::Matrix<double, 25, 25> exponent_matrix;
+    AB_continuous.block(0,0,13,13) = A_continuous_;
+    AB_continuous.block(0,13,13,12) = B_continuous_;
+    AB_continuous = 0.030 * AB_continuous; // 30 ms discretization.
+    exponent_matrix = AB_continuous.exp();
+    A_discrete = exponent_matrix.block(0,0,13,13);
+    B_discrete = exponent_matrix.block(0,13,13,12);
 }
