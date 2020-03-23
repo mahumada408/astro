@@ -10,7 +10,7 @@
 #include <geometry_msgs/TransformStamped.h>
 
 #include "qpOASES/include/qpOASES.hpp"
-#include "floating_base/floating_base.h"
+#include <astro_control/floating_base/floating_base.h>
 
 #include <cmath>
 #include <eigen3/Eigen/Dense>

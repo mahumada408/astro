@@ -19,9 +19,6 @@ class FloatingBase {
 
         // Update the continuous linear dynamics.
         // x_dot = Ax + Bu
-        // @param inertia Quadruped's inertia in the global coordinate frame. 
-        // @param mass Mass of the Quadruped.
-        // @param r_yaw Rotation matrix about the z axis.
         void UpdateDynamics();
 
         void GetDiscretizeDynamics(Eigen::Matrix<double, 13, 13>& A_discrete, Eigen::Matrix<double, 13, 12>& B_discrete);
@@ -61,7 +58,6 @@ class FloatingBase {
         Eigen::Vector3d foot_rl_;
         Eigen::Vector3d foot_rr_;
 
-        Eigen::Vector3d state_;
         Eigen::Matrix<double, 13, 13> A_continuous_;
         Eigen::Matrix<double, 13, 12> B_continuous_;
         Eigen::Matrix<double, 13, 13> A_discrete_;

@@ -1,4 +1,4 @@
-#include "floating_base.h"
+#include <astro_control/floating_base/floating_base.h>
 
 #include <eigen3/unsupported/Eigen/MatrixFunctions>
 #include <math.h>
@@ -20,9 +20,9 @@ void FloatingBase::Initialize() {
 
     r_yaw_.setZero();
 
-    state_.setZero();
     A_continuous_.setZero();
     B_continuous_.setZero();
+    robo_state_.setZero();
 }
 
 void FloatingBase::SetFootPosition(Eigen::Vector3d foot_fl, Eigen::Vector3d foot_fr, Eigen::Vector3d foot_rl, Eigen::Vector3d foot_rr) {
