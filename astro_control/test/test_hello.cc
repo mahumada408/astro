@@ -13,9 +13,13 @@ TEST(TestSuite, testCase1)
 {
     FloatingBase test_robot;
     tf::Vector3 position(0,0,0);
-    tf::Quaternion orientation(0.0,0.1305262,0.0,0.9914449);
+    
+    // Orientation corresponding to 45 degree rotation about the
+    // z-axis.
+    tf::Quaternion orientation(0.0, 0.0, 0.3826834,0.9238795);
     tf::StampedTransform test_pose;
 
+    // Set zero velocities.
     geometry_msgs::Twist test_twist;
     test_twist.linear.x = 0;
     test_twist.linear.y = 0;
@@ -29,9 +33,19 @@ TEST(TestSuite, testCase1)
     test_robot.SetRobotPose(test_pose, test_twist);
     Eigen::Matrix<double, 13, 1> robot_state = test_robot.RobotState();
 
-    std::cout << robot_state << std::endl;
+    Eigen::Matrix<double, 13, 1> expected_orientation;
+    expected_orientation.setZero();
+    expected_orientation.z() = 0.78539816339; // [rad]
 
-    EXPECT_EQ(1, 1) << "failed the test of champions";
+    ASSERT_TRUE(robot_state.isApprox(expected_orientation, 1e-5)) << "failed the test of champions";
+
+    Eigen::Vector3d foot_fl, foot_fr, foot_rl, foot_rr;
+    foot_fl << 0.133795, 0.131609, -0.169671;
+    foot_fr << 0.133795, -0.131609, -0.169671;
+    foot_rl << -0.133795, 0.131609, -0.169671;
+    foot_rr << -0.133795, -0.131609, -0.169671;
+    test_robot.SetFootPosition(foot_fl, foot_fr, foot_rl, foot_rr);
+    
 }
 
 

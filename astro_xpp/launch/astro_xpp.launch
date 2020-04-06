@@ -1,0 +1,20 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find astro_description)/urdf/astro.xacro'"/>
+
+  <!-- Launch rviz with specific configuration -->
+  <node name="rviz_xpp" pkg="rviz" type="rviz" args="-d $(find astro_xpp)/rviz/astro_xpp.rviz">
+  </node>
+
+  <!-- Converts Cartesian state to joint state and publish TFs to rviz  --> 
+  <node name="astro_xpp_visualizer" pkg="astro_xpp" type="astro_xpp_visualizer" output="screen"/>
+
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+  
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+</launch>

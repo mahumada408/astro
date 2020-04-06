@@ -5,7 +5,7 @@
     </include>
 
     <!-- Robot model -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find astro_description)/urdf/astro.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find astro_description)/urdf/astro_new.xacro'" />
 
     <!-- Spawn robot model -->
     <node

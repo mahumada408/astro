@@ -4,12 +4,6 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="astro_description">
-  <link name="dummy"/>
-  <joint name="base_joint" type="fixed">
-    <parent link="dummy"/>
-    <child link="base_link"/>
-  </joint>
-  
   <link
     name="base_link">
     <inertial>
@@ -90,6 +84,10 @@
       </geometry>
     </collision>
   </link>
+  <joint name="base_link" type="fixed">
+     <parent link="dummy"/>
+     <child link="base_link"/>
+  </joint>
   <joint
     name="hip_0"
     type="revolute">
