@@ -58,7 +58,7 @@ Joints InverseKinematicsAstro::GetAllJointAngles(const EndeffectorsPos& x_B) con
         p_FH_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(1,-1,1));
         break;
       case LH:
-        p_FH_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(-1,1,1));
+        p_FH_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(1,1,1));
         bend = AstrolegInverseKinematics::Backward;
         break;
       case RH:

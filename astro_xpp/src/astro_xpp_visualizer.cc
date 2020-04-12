@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
   joint_names.at(n_j*quad::FootIDs::RH + KFE) = "knee_3";
 
   std::string urdf = "astro_robot_description";
+  
   UrdfVisualizer node_des(urdf, joint_names, "base_link", "world",
 			  joint_desired_astro, "");
 

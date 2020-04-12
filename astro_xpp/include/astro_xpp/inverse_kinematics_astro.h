@@ -54,7 +54,7 @@ public:
   int GetEECount() const override { return 4; };
 
 private:
-  Vector3d base2hip_LF_ = Vector3d(0.133, 0.131, 0.0);
+  Vector3d base2hip_LF_ = Vector3d(0.19, 0.131, 0.0);
   AstrolegInverseKinematics leg;
 };
 

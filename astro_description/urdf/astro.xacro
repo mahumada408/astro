@@ -4,11 +4,11 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="astro_description">
-  <link name="dummy"/>
+  <!-- <link name="dummy"/>
   <joint name="base_joint" type="fixed">
     <parent link="dummy"/>
     <child link="base_link"/>
-  </joint>
+  </joint> -->
   
   <link
     name="base_link">
@@ -217,7 +217,7 @@
     <child
       link="knee_0" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -391,7 +391,7 @@
     <child
       link="shoulder_1" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -618,7 +618,7 @@
     <child
       link="shoulder_2" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -676,7 +676,7 @@
     <child
       link="knee_2" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -845,7 +845,7 @@
     <child
       link="shoulder_3" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 -1 0" />
     <limit
       lower="-3.14"
       upper="3.14"
