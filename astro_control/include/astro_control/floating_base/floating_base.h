@@ -1,68 +1,72 @@
 #pragma once
 
-#include <eigen3/Eigen/Dense>
 #include <ros/ros.h>
+#include <eigen3/Eigen/Dense>
 
 #include "tf/transform_listener.h"
 
-
 class FloatingBase {
-    public:
-        FloatingBase();
-        ~FloatingBase() {}
+ public:
+  FloatingBase() {}
+  FloatingBase(double mass, double Ixx, double Iyy, double Izz);
+  ~FloatingBase() {}
 
-        void UpdateState();
+  void UpdateState();
 
-        void SetFootPosition(Eigen::Vector3d foot_fl, Eigen::Vector3d foot_fr, Eigen::Vector3d foot_rl, Eigen::Vector3d foot_rr);
+  void SetFootPositions(Eigen::Vector3d foot_fl, Eigen::Vector3d foot_fr, Eigen::Vector3d foot_rl,
+                       Eigen::Vector3d foot_rr);
 
-        void SetRobotPose(tf::StampedTransform& robo_pose, geometry_msgs::Twist& robo_twist);
+  void SetRobotPose(tf::StampedTransform& robo_pose, geometry_msgs::Twist& robo_twist);
 
-        // Update the continuous linear dynamics.
-        // x_dot = Ax + Bu
-        void UpdateDynamics();
+  // Update the continuous linear dynamics.
+  // x_dot = Ax + Bu
+  void UpdateDynamics();
 
-        void GetDiscretizeDynamics(Eigen::Matrix<double, 13, 13>& A_discrete, Eigen::Matrix<double, 13, 12>& B_discrete);
+  void GetDiscretizeDynamics(Eigen::Matrix<double, 13, 13>& A_discrete, Eigen::Matrix<double, 13, 12>& B_discrete);
 
-        Eigen::Matrix<double, 13, 1> RobotState() { return robo_state_; }
-    private:
-        // Initialize robot data members.
-        void Initialize();
+  Eigen::Matrix<double, 13, 1> RobotState() { return robo_state_; }
 
-        // Matrix multiplication between inertia tensor and the position vector
-        // from the CG to the foot location.
-        Eigen::Matrix3d InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3d foot_pos);
+ private:
+  // Form skew symmetric matrix for foot position.
+  Eigen::Matrix3d SkewSymmetricFoot(Eigen::Vector3d foot_pos);
 
-        // Sets the position of the origin of the body frame in the world frame, expressed in the world frame.
-        void SetRobotPosition(tf::Vector3& robo_pos);
+  // Matrix multiplication between inertia tensor and the position vector
+  // from the CG to the foot location.
+  Eigen::Matrix3d InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3d foot_pos);
 
-        // Sets the orientation of the body frame in the world frame, expressed in the world frame.
-        void SetOrientation(tf::Quaternion robo_quat);
+  // Sets the position of the origin of the body frame in the world frame, expressed in the world frame.
+  void SetRobotPosition(tf::Vector3& robo_pos);
 
-        void SetRobotVelocities(geometry_msgs::Twist& robo_twist);
+  // Sets the orientation of the body frame in the world frame, expressed in the world frame.
+  void SetOrientation(tf::Quaternion robo_quat);
 
-        // Mass of the robot.
-        double mass_;
+  void SetRobotVelocities(geometry_msgs::Twist& robo_twist);
 
-        // Robot inertia tensor in the quadruped body frame.
-        double i_xx_;
-        double i_yy_;
-        double i_zz_;
-        Eigen::Matrix3d inertia_;
+  // Mass of the robot.
+  double mass_;
 
-        // Rotation matrix about the z axis (yaw).
-        Eigen::Matrix3d r_yaw_;
+  // Robot inertia tensor in the quadruped body frame.
+  double i_xx_;
+  double i_yy_;
+  double i_zz_;
+  Eigen::Matrix3d inertia_;
 
-        // Position of foot from the body cm expressed in the body frame.
-        Eigen::Vector3d foot_fl_;
-        Eigen::Vector3d foot_fr_;
-        Eigen::Vector3d foot_rl_;
-        Eigen::Vector3d foot_rr_;
+  // Rotation matrix about the z axis (yaw).
+  Eigen::Matrix3d r_yaw_;
 
-        Eigen::Matrix<double, 13, 13> A_continuous_;
-        Eigen::Matrix<double, 13, 12> B_continuous_;
-        Eigen::Matrix<double, 13, 13> A_discrete_;
-        Eigen::Matrix<double, 13, 12> B_discrete_;
+  // Position of foot from the body cm expressed in the world frame.
+  Eigen::Vector3d foot_fl_;
+  Eigen::Vector3d foot_fr_;
+  Eigen::Vector3d foot_rl_;
+  Eigen::Vector3d foot_rr_;
+  std::vector<Eigen::Vector3d> foot_positions_;
+  int num_paws_ = 4;
 
-        // State of the robot.
-        Eigen::Matrix<double, 13, 1> robo_state_;
+  Eigen::Matrix<double, 13, 13> A_continuous_;
+  Eigen::Matrix<double, 13, 12> B_continuous_;
+  Eigen::Matrix<double, 13, 13> A_discrete_;
+  Eigen::Matrix<double, 13, 12> B_discrete_;
+
+  // State of the robot. Note that all state variables must be expressed in the world frame.
+  Eigen::Matrix<double, 13, 1> robo_state_;
 };

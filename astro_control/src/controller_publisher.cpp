@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   ros::Publisher chatter_pub = n.advertise<std_msgs::Float64MultiArray>("/joint_position_controller/command", 1000);
   ros::Rate loop_rate(100);
 
-  FloatingBase robot_model;
+  FloatingBase robot_model(20, 0.07538, 0.1611, 0.202);
   Eigen::Vector3d foot_fl;
   Eigen::Vector3d foot_fr;
   Eigen::Vector3d foot_rl;
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
     x_d.replicate(13*horizon, 1);
 
     // Update robot model.
-    robot_model.SetFootPosition(foot_fl, foot_fr, foot_rl, foot_rr);
+    robot_model.SetFootPositions(foot_fl, foot_fr, foot_rl, foot_rr);
     robot_model.UpdateDynamics();
     robot_model.GetDiscretizeDynamics(A_discrete, B_discrete);
 

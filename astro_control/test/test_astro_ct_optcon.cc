@@ -5,11 +5,21 @@
 #include <thread>
 
 #include <astro_control/floating_base/floating_base.h>
+// #include <ct/models/InvertedPendulum/InvertedPendulum.h>
+
+#include <ct/core/systems/continuous_time/System.h>
+#include <ct/core/systems/continuous_time/ControlledSystem.h>
+#include <ct/core/systems/continuous_time/SecondOrderSystem.h>
+#include <ct/core/systems/continuous_time/ControlledSystem.h>
+#include <ct/core/systems/continuous_time/SwitchedControlledSystem.h>
+#include <ct/core/systems/continuous_time/linear/LinearSystem.h>
+#include <ct/core/systems/continuous_time/linear/SwitchedLinearSystem.h>
+#include <ct/core/systems/continuous_time/linear/LTISystem.h>
 
 #include "tf/transform_listener.h"
 
 // Declare a test
-TEST(TestSuite, testCase1)
+TEST(TestOpt, testOptCon)
 {
     std::cout << "Testing!" << std::endl;
     FloatingBase test_robot(20, 0.07538, 0.1611, 0.202);

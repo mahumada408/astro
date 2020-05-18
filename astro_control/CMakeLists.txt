@@ -15,9 +15,19 @@ find_package(catkin REQUIRED COMPONENTS
   tf tf_conversions
 )
 
+find_package(ct_core REQUIRED)
+
 catkin_package(
   INCLUDE_DIRS include
 )
+
+catkin_package(
+  INCLUDE_DIRS 
+    include
+  DEPENDS 
+    ct_core
+)
+
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
@@ -40,6 +50,11 @@ target_link_libraries(controller_publisher
 # Unit target
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
+
   add_rostest_gtest(testing-test launch/gtest.test test/test_hello.cc)
   target_link_libraries(testing-test ${catkin_LIBRARIES} floating_base)
+
+  add_rostest_gtest(test_astro_ct_optcon launch/gtest_optcon.test test/test_astro_ct_optcon.cc)
+  target_link_libraries(test_astro_ct_optcon ${catkin_LIBRARIES} floating_base ct_core)
+
 endif()

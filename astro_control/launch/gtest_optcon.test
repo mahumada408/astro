@@ -1,0 +1,3 @@
+<launch>
+	<test test-name="Unit-Tests-Optcon" pkg="astro_control" type="test_astro_ct_optcon" name="test_astro_ct_optcon"/>
+</launch>
