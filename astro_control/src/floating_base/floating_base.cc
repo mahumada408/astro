@@ -76,6 +76,7 @@ Eigen::Matrix3d FloatingBase::SkewSymmetricFoot(Eigen::Vector3d foot_pos) {
   skew_pos << 0, -foot_pos.z(), foot_pos.y(),
               foot_pos.z(), 0, -foot_pos.x(),
               -foot_pos.y(), foot_pos.x(), 0;
+  return skew_pos;
 }
 
 Eigen::Matrix3d FloatingBase::InertiaPos(Eigen::Matrix3d inertia, Eigen::Vector3d foot_pos) {

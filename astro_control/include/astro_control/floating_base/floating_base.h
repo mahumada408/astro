@@ -26,6 +26,10 @@ class FloatingBase {
 
   Eigen::Matrix<double, 13, 1> RobotState() { return robo_state_; }
 
+  Eigen::Matrix<double, 13, 13> A() { return A_continuous_; }
+
+  Eigen::Matrix<double, 13, 12> B() { return B_continuous_; }
+
  private:
   // Form skew symmetric matrix for foot position.
   Eigen::Matrix3d SkewSymmetricFoot(Eigen::Vector3d foot_pos);

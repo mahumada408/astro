@@ -47,6 +47,12 @@ target_link_libraries(controller_publisher
                       qpOASES
                       floating_base)
 
+add_executable(example_optimization src/examples/example_optimization.cc)
+target_link_libraries(example_optimization
+                      ${catkin_LIBRARIES}
+                      floating_base
+                      ct_core)
+
 # Unit target
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)

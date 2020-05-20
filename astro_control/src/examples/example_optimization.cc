@@ -6,6 +6,7 @@
 
 #include <astro_control/floating_base/floating_base.h>
 
+// clang-format off
 #include <ct/core/systems/continuous_time/System.h>
 #include <ct/core/systems/continuous_time/ControlledSystem.h>
 #include <ct/core/systems/continuous_time/SecondOrderSystem.h>
@@ -14,13 +15,13 @@
 #include <ct/core/systems/continuous_time/linear/LinearSystem.h>
 #include <ct/core/systems/continuous_time/linear/SwitchedLinearSystem.h>
 #include <ct/core/systems/continuous_time/linear/LTISystem.h>
+// clang-format on
 
 #include <ct/core/core.h>
 
 #include "tf/transform_listener.h"
 
-// Declare a test
-TEST(TestOpt, testOptCon) {
+int main(int argc, char** argv) {
   std::cout << "Testing!" << std::endl;
   FloatingBase test_robot(20, 0.07538, 0.1611, 0.202);
   tf::Vector3 position(0, 0, 0);
@@ -42,13 +43,10 @@ TEST(TestOpt, testOptCon) {
   test_pose.setRotation(orientation);
 
   test_robot.SetRobotPose(test_pose, test_twist);
-  Eigen::Matrix<double, 13, 1> robot_state = test_robot.RobotState();
 
   Eigen::Matrix<double, 13, 1> expected_orientation;
   expected_orientation.setZero();
   expected_orientation.z() = 0.78539816339;  // [rad]
-
-  ASSERT_TRUE(robot_state.isApprox(expected_orientation, 1e-5)) << "failed the test of champions";
 
   Eigen::Vector3d foot_fl, foot_fr, foot_rl, foot_rr;
   foot_fl << 0.133795, 0.131609, -0.169671;
@@ -72,24 +70,10 @@ TEST(TestOpt, testOptCon) {
   u0(8) = 20 / 4;
   u0(11) = 20 / 4;
 
-  std::shared_ptr<ct::core::LTISystem<state_dim, control_dim>> quadruped_system(new ct::core::LTISystem<state_dim, control_dim>(test_robot.A(), test_robot.B()));
+  std::shared_ptr<ct::core::LTISystem<state_dim, control_dim>> quadruped_system(
+      new ct::core::LTISystem<state_dim, control_dim>(test_robot.A(), test_robot.B()));
+  ct::core::SensitivityApproximation<state_dim, control_dim> discrete_quad(
+        0.1, quadruped_system, ct::core::SensitivityApproximationSettings::APPROXIMATION::MATRIX_EXPONENTIAL);
 
   std::cout << "All done" << std::endl;
-}
-
-// Run all the tests that were declared with TEST()
-int main(int argc, char** argv) {
-  ros::init(argc, argv, "TestNode");
-
-  testing::InitGoogleTest(&argc, argv);
-
-  std::thread t([] {
-    while (ros::ok()) ros::spin();
-  });
-
-  auto res = RUN_ALL_TESTS();
-
-  ros::shutdown();
-
-  return res;
 }

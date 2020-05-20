@@ -2,3 +2,5 @@ cd catkin_ws
 catkin run_tests // this will build and run all the tests
 to run individual tests
 ./devel/lib/astro_control/testing-test
+
+catkin build astro_control --catkin-make-args run_tests
