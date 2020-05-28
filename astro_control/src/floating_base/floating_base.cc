@@ -98,12 +98,9 @@ void FloatingBase::UpdateDynamics() {
   // Zero it out just in case.
   B_continuous_.setZero();
 
-  for (int i = 0; i < 3; ++i) {
-    for (int j = 0; j < num_paws_; ++j) {
-      // Rows 6 - 8 will have the mass goodness.
-    B_continuous_.block(6 + i, j + (i * 3), 3, 3) = Eigen::Matrix3d::Identity() / mass_;
-    }
-    B_continuous_.block(9, i * 3, 3, 3) = InertiaPos(inertia_global, foot_positions_[i]);
+  for (int i = 0; i < num_paws_; ++i) {
+    B_continuous_.block(6, i * 3, 3, 3) = Eigen::Matrix3d::Identity() / mass_;
+    B_continuous_.block(9, i * 3, 3, 3) = InertiaPos(inertia_, foot_positions_[i]);
   }
 }
 

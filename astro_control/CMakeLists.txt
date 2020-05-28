@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(ct_core REQUIRED)
+find_package(ct_optcon REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -26,6 +27,7 @@ catkin_package(
     include
   DEPENDS 
     ct_core
+    ct_optcon
 )
 
 include_directories(
@@ -51,7 +53,8 @@ add_executable(example_optimization src/examples/example_optimization.cc)
 target_link_libraries(example_optimization
                       ${catkin_LIBRARIES}
                       floating_base
-                      ct_core)
+                      ct_core
+                      ct_optcon)
 
 # Unit target
 if(CATKIN_ENABLE_TESTING)
