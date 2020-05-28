@@ -60,10 +60,6 @@ int main(int argc, char** argv) {
   ct::core::SensitivityApproximation<state_dim, control_dim> discrete_quad(
       dt, quadruped_system, ct::core::SensitivityApproximationSettings::APPROXIMATION::BIG_MATRIX_EXPONENTIAL);
 
-  /* STEP 1-B: System Linearizer */
-  std::shared_ptr<ct::core::SystemLinearizer<state_dim, control_dim>> adLinearizer(
-      new ct::core::SystemLinearizer<state_dim, control_dim>(quadruped_system));
-
   ct::core::StateVector<state_dim> x0;
   ct::core::StateVector<state_dim> x_next;
   ct::core::StateVector<state_dim> xf;
@@ -86,49 +82,37 @@ int main(int argc, char** argv) {
   R.setIdentity();
 
   // create a cost function
-  // ct::optcon::CostFunctionQuadraticSimple<state_dim, control_dim> costFunction(Q, R, xf, u0, xf, Q);
-  std::shared_ptr<ct::optcon::CostFunctionQuadraticSimple<state_dim, control_dim>> costFunction(new ct::optcon::CostFunctionQuadraticSimple<state_dim, control_dim>(Q, R, xf, u0, xf, Q));
+  ct::optcon::CostFunctionQuadraticSimple<state_dim, control_dim> costFunction(Q, R, xf, u0, xf, Q);
 
   // STEP 1-E: create and initialize an "optimal control problem"
-  ct::optcon::ContinuousOptConProblem<state_dim, control_dim> optConProblem(timeHorizon, x0, quadruped_system, costFunction, adLinearizer);
+  ContinuousOptConProblem<state_dim, control_dim> optConProblem(timeHorizon, x0, quadruped_system, costFunction, quadruped_system);
+  
+  // initialize the linear quadratic optimal control problems
+  lqocProblem_hpipm->setFromTimeInvariantLinearQuadraticProblem(discrete_quad, costFunction, x0, dt);
 
-  /* STEP 2: set up a nonlinear optimal control solver. */
+  // create hpipm solver instance, set and solve problem
+  ct::optcon::HPIPMInterface<state_dim, control_dim> hpipm;
+  hpipm.setProblem(lqocProblem_hpipm);
+  hpipm.solve();
+  hpipm.computeStatesAndControls();
+  hpipm.computeFeedbackMatrices();
+  hpipm.compute_lv();
 
-  /* STEP 2-A: Create the settings. */
-  ct::optcon::NLOptConSettings nloc_settings;
-  nloc_settings.load("/home/manuel/Downloads/NLOC_ObstacleConstraint/nlocSolver_ObstacleConstraint.info", true, "ilqr");
-  nloc_settings.lqocp_solver = ct::optcon::NLOptConSettings::LQOCP_SOLVER::HPIPM_SOLVER;  // solve LQ-problems using HPIPM
-
-  /* STEP 2-B: provide an initial guess */
-  // calculate the number of time steps K
-  size_t K = nloc_settings.computeK(timeHorizon);
-
-  /* design trivial initial controller for NLOC. */
-  ct::core::FeedbackArray<state_dim, control_dim> u0_fb(K, ct::core::FeedbackMatrix<state_dim, control_dim>::Zero());
-  ct::core::ControlVectorArray<control_dim> u0_ff(K, ct::core::ControlVector<control_dim>::Zero());
-  ct::core::StateVectorArray<state_dim> x_ref_init(K + 1, x0);
-  ct::optcon::NLOptConSolver<state_dim, control_dim>::Policy_t initController(x_ref_init, u0_ff, u0_fb, nloc_settings.dt);
-
-  // STEP 2-C: create an NLOptConSolver instance
-  ct::optcon::NLOptConSolver<state_dim, control_dim> nloc(optConProblem, nloc_settings);
-
-  // set the initial guess
-  nloc.setInitialGuess(initController);
+   // compute and retrieve solutions
+  ct::core::StateVectorArray<state_dim> x_sol_hpipm = hpipm.getSolutionState();
+  ct::core::ControlVectorArray<control_dim> u_sol_hpipm = hpipm.getSolutionControl();
+  ct::core::FeedbackArray<state_dim, control_dim> K_sol_hpipm = hpipm.getSolutionFeedback();
+  ct::core::ControlVectorArray<control_dim> lv_sol_hpipm = hpipm.get_lv();
 
 
-  // STEP 3: solve the optimal control problem
-  nloc.solve();
-
-  // STEP 4: retrieve the solution
-  ct::core::StateFeedbackController<state_dim, control_dim> solution = nloc.getSolution();
-
-  ct::core::StateTrajectory<state_dim, double> state_traj = nloc.getStateTrajectory();
-  ct::core::ControlTrajectory<control_dim, double> control_traj = nloc.getControlTrajectory();
-  std::cout << "state traj" << std::endl;
-  state_traj.print();
-  std::cout << std::endl;
-  std::cout << "control traj" << std::endl;
-  control_traj.print();
+  for (int i = 0; i < x_sol_hpipm.size(); ++i) {
+    std::cout << "i: " << i << std::endl;
+    std::cout << "states" << std::endl;
+    std::cout << x_sol_hpipm[i] << std::endl;
+    std::cout << "control" << std::endl;
+    std::cout << u_sol_hpipm[i] << std::endl;
+    std::cout << std::endl;
+  }
 
 
 }
