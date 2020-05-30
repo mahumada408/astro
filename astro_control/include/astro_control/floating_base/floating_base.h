@@ -5,8 +5,64 @@
 
 #include "tf/transform_listener.h"
 
+// Floating base model for a quadruped system. The model is defined as a floating base with leg enumeration as shown
+// below. The forces applied to this model are only those imposed by gravity, and the reaction forces at the point
+// of contact for each foot.
+//
+//        front
+//  +-----------------+
+//  |                 |
+//  | 1             2 |
+//  |                 |
+//  |       ^ Bx      |
+//  |       |         |
+//  |       |   By    |
+//  |       +--->     |
+//  |                 |
+//  |                 |
+//  |                 |
+//  |                 |
+//  | 3             4 |
+//  |                 |
+//  +-----------------+
+
 class FloatingBase {
  public:
+
+  // State indices for floating base model.
+  enum State {
+    x = 0,
+    y = 1, 
+    z = 2, 
+    x_dot = 3, 
+    y_dot = 4, 
+    z_dot = 5,
+    roll = 6,
+    pitch = 7,
+    yaw = 8,
+    roll_dot = 9,
+    pitch_dot = 10,
+    yaw_dot = 11,
+    g = 12
+  };
+
+  // Control indices for floating base model.
+  enum Control {
+    // Front left leg.
+    f1x = 0,
+    f1y = 1,
+    f1z = 2,
+    f2x = 3,
+    f2y = 4,
+    f2z = 5,
+    f3x = 6,
+    f3y = 7,
+    f3z = 8,
+    f4x = 9,
+    f4y = 10,
+    f4z = 11
+  };
+
   FloatingBase() {}
   FloatingBase(double mass, double Ixx, double Iyy, double Izz);
   ~FloatingBase() {}
