@@ -5,13 +5,8 @@
 #include <thread>
 
 #include <astro_control/floating_base/floating_base.h>
-
-// clang-format off
 #include <ct/core/core.h>
 #include <ct/optcon/optcon.h>
-// clang-format on
-
-#include <ct/core/core.h>
 
 #include "tf/transform_listener.h"
 
@@ -47,8 +42,8 @@ int main(int argc, char** argv) {
 
   // Optimization setup.
 
-  const size_t state_dim = 13;
-  const size_t control_dim = 12;
+  const size_t state_dim = FloatingBase::State::count;
+  const size_t control_dim = FloatingBase::Control::count;
   double dt = 0.01;
   ct::core::Time timeHorizon = 10.0;  // and a final time horizon in [sec]
   int N = (int)timeHorizon / dt;
@@ -80,6 +75,7 @@ int main(int argc, char** argv) {
   u0(FloatingBase::Control::f3z) = u0(FloatingBase::Control::f1z);
   u0(FloatingBase::Control::f4z) = u0(FloatingBase::Control::f1z);
 
+  // Desired state of the robot.
   xf.setZero();
   xf(FloatingBase::State::z) = 1.0;
 

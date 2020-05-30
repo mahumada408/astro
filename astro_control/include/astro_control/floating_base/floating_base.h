@@ -43,7 +43,8 @@ class FloatingBase {
     roll_dot = 9,
     pitch_dot = 10,
     yaw_dot = 11,
-    g = 12
+    g = 12,
+    count
   };
 
   // Control indices for floating base model.
@@ -60,7 +61,8 @@ class FloatingBase {
     f3z = 8,
     f4x = 9,
     f4y = 10,
-    f4z = 11
+    f4z = 11,
+    count
   };
 
   FloatingBase() {}
