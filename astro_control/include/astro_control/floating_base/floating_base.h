@@ -44,7 +44,7 @@ class FloatingBase {
     pitch_dot = 10,
     yaw_dot = 11,
     g = 12,
-    count
+    state_count
   };
 
   // Control indices for floating base model.
@@ -62,7 +62,16 @@ class FloatingBase {
     f4x = 9,
     f4y = 10,
     f4z = 11,
-    count
+    control_count
+  };
+
+  // Indices for the individual feet.
+  enum Foot {
+    fl = 0,
+    fr = 1,
+    bl = 2, 
+    br = 3,
+    foot_count
   };
 
   FloatingBase() {}
@@ -87,6 +96,8 @@ class FloatingBase {
   Eigen::Matrix<double, 13, 13> A() { return A_continuous_; }
 
   Eigen::Matrix<double, 13, 12> B() { return B_continuous_; }
+
+  const std::vector<Eigen::Vector3d> foot_positions() { return foot_positions_; }
 
  private:
   // Form skew symmetric matrix for foot position.

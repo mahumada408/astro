@@ -37,6 +37,7 @@ include_directories(
 
 # Adds the individual libraries.
 add_subdirectory(src/floating_base)
+add_subdirectory(src/gait_generator)
 add_subdirectory(src/qpOASES)
 
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -65,5 +66,8 @@ if(CATKIN_ENABLE_TESTING)
 
   add_rostest_gtest(test_astro_ct_optcon launch/gtest_optcon.test test/test_astro_ct_optcon.cc)
   target_link_libraries(test_astro_ct_optcon ${catkin_LIBRARIES} floating_base ct_core)
+
+  add_rostest_gtest(test_gait_generator launch/unit_tests/gtest_gait_generator.test src/gait_generator/test/test_gait_generator.cc)
+  target_link_libraries(test_gait_generator ${catkin_LIBRARIES} floating_base gait_generator)
 
 endif()

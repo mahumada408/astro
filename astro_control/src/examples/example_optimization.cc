@@ -42,8 +42,8 @@ int main(int argc, char** argv) {
 
   // Optimization setup.
 
-  const size_t state_dim = FloatingBase::State::count;
-  const size_t control_dim = FloatingBase::Control::count;
+  const size_t state_dim = FloatingBase::State::state_count;
+  const size_t control_dim = FloatingBase::Control::control_count;
   double dt = 0.01;
   ct::core::Time timeHorizon = 10.0;  // and a final time horizon in [sec]
   int N = (int)timeHorizon / dt;
