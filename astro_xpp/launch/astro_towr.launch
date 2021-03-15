@@ -1,6 +1,0 @@
-<launch>
-  <param name="astro_robot_description" command="$(find xacro)/xacro --inorder '$(find astro_description)/urdf/astro.xacro'"/>
-
-  <!-- Converts Cartesian state to joint state and publish TFs to rviz  --> 
-  <node name="astro_xpp_visualizer" pkg="astro_xpp" type="astro_xpp_visualizer" output="screen"/>
-</launch>

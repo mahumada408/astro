@@ -69,8 +69,8 @@ class FloatingBase {
   enum Foot {
     fl = 0,
     fr = 1,
-    bl = 2, 
-    br = 3,
+    rl = 2, 
+    rr = 3,
     foot_count
   };
 
